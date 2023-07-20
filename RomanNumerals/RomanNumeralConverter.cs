@@ -8,7 +8,24 @@ namespace RomanNumerals
 {
     public class RomanNumeralConverter
     {
-        public string ConvertToRomanNumerals(int value)
+        public Dictionary<int,string> RomanNumerals = new()
+        {
+            { 1000, "M" },
+            { 900, "CM" },
+            { 500, "D" },
+            { 400, "CD" },
+            { 100, "C" },
+            { 90, "XC" },
+            { 50, "L" },
+            { 40, "XL" },
+            { 10, "X" },
+            { 9, "IX" },
+            { 6, "VI" },
+            { 5, "V" },
+            { 4, "IV" },
+            { 1, "I" }
+        };
+        public string ConvertToRomanNumerals(int arabic)
         {
             /* Task 1
 
@@ -28,7 +45,18 @@ namespace RomanNumerals
                 3999 = MMMCMXCIX
             
             */
-            return "TODO";
+
+            var roman = string.Empty;
+            foreach (int value in RomanNumerals.Keys)
+            {
+                while (arabic >= value)
+                {
+                    roman += RomanNumerals[value];
+                    arabic -= value;
+                }
+            }
+
+            return roman;
         }
 
         public int ConvertFromRomanNumerals(string numeral)
