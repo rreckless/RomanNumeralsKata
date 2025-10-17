@@ -1,6 +1,9 @@
+// ...existing code...
 namespace Tests
 {
+    using System;
     using RomanNumerals;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class ConvertToRomanNumeralsTests
@@ -37,5 +40,21 @@ namespace Tests
             var answer = rnc.ConvertToRomanNumerals(value);
             Assert.AreEqual(numeral, answer);
         }
+
+        
+        [TestMethod]
+        public void ConvertToRomanNumerals_Zero_ThrowsArgumentOutOfRangeException()
+        {
+            var rnc = new RomanNumeralConverter();
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => rnc.ConvertToRomanNumerals(0));
+        }
+
+        [TestMethod]
+        public void ConvertToRomanNumerals_Negative_ThrowsArgumentOutOfRangeException()
+        {
+            var rnc = new RomanNumeralConverter();
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => rnc.ConvertToRomanNumerals(-5));
+        }
+        
     }
 }
